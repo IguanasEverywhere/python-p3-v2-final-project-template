@@ -54,6 +54,12 @@ class Collaborative_Pianist:
             cls.all_pianists[row[0]] = pianist
             return pianist
 
+    @classmethod
+    def create(cls, name, rank, email):
+        new_pianist = cls(name, rank, email)
+        new_pianist.save_to_db()
+        return new_pianist
+
 
     def save_to_db(self):
         sql = """
@@ -62,5 +68,18 @@ class Collaborative_Pianist:
             """
         CURSOR.execute(sql, (self.name, self.rank, self.email))
         CONN.commit()
-        return (f"{self.name} inserted into table!")
+
+        print(f"{self.name} saved to the database!")
+
+    def delete_instance(self):
+        print(self.id)
+        sql = """
+            DELETE
+            FROM collaborative_pianists
+            WHERE ID = ?
+            """
+        CURSOR.execute(sql, (self.id))
+        print(f"{self.name} deleted from database!")
+
+
 
