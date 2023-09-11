@@ -1,7 +1,8 @@
 # lib/helpers.py
 
 def helper_1():
-    print("Performing useful function#1.")
+    print("doing something useful...")
+
 
 
 def exit_program():

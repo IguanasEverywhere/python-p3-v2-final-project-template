@@ -13,15 +13,34 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            helper_1()
+            pianist_menu()
+        elif choice == "2":
+            student_menu()
         else:
             print("Invalid choice")
 
+def pianist_menu():
+    active = True
+    while active:
+        print("Pianist options...")
+        choice = input(">> ")
+        if choice == "0":
+            active = False
+
+def student_menu():
+    active = True
+    while active:
+        print("Student options...")
+        choice = input(">> ")
+        if choice == "0":
+            active = False
 
 def menu():
     print("Please select an option:")
+    print("1. Pianist Menu")
+    print("2. Student Menu")
     print("0. Exit the program")
-    print("1. Some useful function")
+
 
 
 if __name__ == "__main__":
