@@ -23,7 +23,7 @@ def main():
 def pianist_menu():
     active = True
     while active:
-        print("\nCOLLABORATIVE PIANIST MENU")
+        print("\n*** COLLABORATIVE PIANIST MENU ***")
         print("What would you like to do?")
         print("1. Show all Collaborative Pianists in the database")
         print("2. Access Collaborative Pianist by ID")
@@ -44,6 +44,7 @@ def pianist_by_id_menu():
 
     active = True
     while active:
+        print(f"\nPianist: {found_pianist.name.upper()}")
         print(f"What would you like to do with pianist {found_pianist.name}?")
         print(f"1. Show {found_pianist.name}'s info")
         print(f"2. Show all assigned students for {found_pianist.name}")
@@ -62,7 +63,8 @@ def student_menu():
             active = False
 
 def menu():
-    print("\nWhat data you like to access? Select an option from below: ")
+    print("\n*** MAIN MENU ***")
+    print("What data you like to access? Select an option from below: ")
     print("1. Collaborative Pianists")
     print("2. Students")
     print("0. Exit the program")
