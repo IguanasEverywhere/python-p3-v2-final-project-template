@@ -10,6 +10,10 @@ def retrieve_pianist_by_id(pianist_id):
     found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
     return found_pianist
 
+def retrieve_pianist_by_name(name):
+    found_pianist = Collaborative_Pianist.get_by_name(name)
+    return found_pianist
+
 
 
 

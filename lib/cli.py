@@ -3,7 +3,8 @@
 from helpers import (
     exit_program,
     get_all_pianists_from_db,
-    retrieve_pianist_by_id
+    retrieve_pianist_by_id,
+    retrieve_pianist_by_name
 )
 
 
@@ -34,6 +35,8 @@ def pianist_menu():
             get_all_pianists_from_db()
         elif choice == "2":
             pianist_by_id_menu()
+        elif choice == "3":
+            pianist_by_name_menu()
         elif choice == "0":
             active = False
 
@@ -41,6 +44,23 @@ def pianist_by_id_menu():
 
     pianist_id = input("Enter the pianist's ID: ")
     found_pianist = retrieve_pianist_by_id(pianist_id)
+
+    active = True
+    while active:
+        print(f"\nPianist: {found_pianist.name.upper()}")
+        print(f"What would you like to do with pianist {found_pianist.name}?")
+        print(f"1. Show {found_pianist.name}'s info")
+        print(f"2. Show all assigned students for {found_pianist.name}")
+        print("0. Go back to Collaborative Pianists menu")
+
+        choice = input(">> ")
+        if choice == "0":
+            active = False
+
+def pianist_by_name_menu():
+    # Refactor this with id into one fn?
+    name = input("Enter the pianist's name: ")
+    found_pianist = retrieve_pianist_by_name(name)
 
     active = True
     while active:
