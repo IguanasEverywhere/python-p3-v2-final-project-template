@@ -8,7 +8,7 @@ def get_all_pianists_from_db():
 
 def retrieve_pianist_by_id(pianist_id):
     found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
-    print(f"ID: {found_pianist.id} {found_pianist.name} // {found_pianist.rank} // {found_pianist.email}")
+    return found_pianist
 
 
 
