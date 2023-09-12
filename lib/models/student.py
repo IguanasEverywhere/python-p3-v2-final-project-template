@@ -5,7 +5,7 @@ class Student:
 
     all_students = {}
 
-    def __init__(self, name, year, instrument, pianist_id, id=None):
+    def __init__(self, name, year, instrument, pianist_id=None, id=None):
         self.id = id
         self.name = name
         self.year = year
@@ -40,9 +40,8 @@ class Student:
         CONN.commit()
 
     @classmethod
-    def create(cls, name, year, instrument, pianist_id=1):
+    def create(cls, name, year, instrument, pianist_id=None):
         new_student = cls(name, year, instrument, pianist_id)
-        print(new_student)
         new_student.save_to_db()
         return new_student
 
@@ -51,7 +50,6 @@ class Student:
             INSERT INTO students (name, year, instrument, pianist_id)
             VALUES (?, ?, ?, ?)
             """
-        print(self)
         CURSOR.execute(sql, (self.name, self.year, self.instrument, self.pianist_id))
         CONN.commit()
         print(f"{self.name} saved to the database!")
