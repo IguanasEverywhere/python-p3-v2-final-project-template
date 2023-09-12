@@ -2,7 +2,8 @@
 
 from helpers import (
     exit_program,
-    helper_1
+    get_all_pianists_from_db,
+    retrieve_pianist_by_id
 )
 
 
@@ -22,10 +23,27 @@ def main():
 def pianist_menu():
     active = True
     while active:
-        print("Pianist options...")
+        print("\nCOLLABORATIVE PIANIST MENU")
+        print("What would you like to do?")
+        print("1. Show all Collaborative Pianists in the database")
+        print("2. Access Collaborative Pianist by ID")
+        print("3. Access Collaborative Pianist by name")
+        print("0. Back to Main Menu")
         choice = input(">> ")
-        if choice == "0":
+        if choice == "1":
+            get_all_pianists_from_db()
+        elif choice == "2":
+            pianist_by_id_menu()
+        elif choice == "0":
             active = False
+
+def pianist_by_id_menu():
+
+    pianist_id = input("Enter the pianist's ID: ")
+    retrieve_pianist_by_id(pianist_id)
+
+
+    print("specific pianist menu")
 
 def student_menu():
     active = True
@@ -36,9 +54,9 @@ def student_menu():
             active = False
 
 def menu():
-    print("Please select an option:")
-    print("1. Pianist Menu")
-    print("2. Student Menu")
+    print("\nWhat data you like to access? Select an option from below: ")
+    print("1. Collaborative Pianists")
+    print("2. Students")
     print("0. Exit the program")
 
 

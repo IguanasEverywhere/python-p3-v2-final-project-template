@@ -10,8 +10,8 @@ class Collaborative_Pianist:
         self.rank = rank
         self.email = email
 
-    def __repr__(self):
-        return f"\n {self.name.upper()} // {self.rank} // {self.email}"
+    # def __repr__(self):
+    #     return f"\n {self.name.upper()} // {self.rank} // {self.email}"
 
     @classmethod
     def create_table(cls):
@@ -43,6 +43,16 @@ class Collaborative_Pianist:
         all_pianists_rows = CONN.execute(sql).fetchall()
         return [cls.make_instance_from_db_row(pianist) for pianist in all_pianists_rows]
 
+    @classmethod
+    def get_by_id(cls, id):
+        sql = """
+            SELECT *
+            FROM collaborative_pianists
+            WHERE id = ?
+            """
+        found_pianist = CONN.execute(sql, (id,)).fetchone()
+        return cls.make_instance_from_db_row(found_pianist)
+
 
     @classmethod
     def make_instance_from_db_row(cls, row):
@@ -52,6 +62,7 @@ class Collaborative_Pianist:
         else:
             pianist = Collaborative_Pianist(row[1], row[2], row[3])
             cls.all_pianists[row[0]] = pianist
+            pianist.id = row[0]
             return pianist
 
     @classmethod
