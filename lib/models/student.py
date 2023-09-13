@@ -45,6 +45,26 @@ class Student:
         new_student.save_to_db()
         return new_student
 
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM students
+            """
+        all_student_rows = CURSOR.execute(sql).fetchall()
+        return [cls.make_instance_from_db(row) for row in all_student_rows]
+
+    @classmethod
+    def make_instance_from_db(cls, row):
+        student = cls.all_students.get(row[0])
+        if student:
+            return cls.all_students[row[0]]
+        else:
+            student = Student(row[1], row[2], row[3], row[4])
+            cls.all_students[row[0]] = student
+            student.id = row[0]
+            return student
+
     def save_to_db(self):
         sql = """
             INSERT INTO students (name, year, instrument, pianist_id)

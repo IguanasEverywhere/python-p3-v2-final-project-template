@@ -1,5 +1,6 @@
 # lib/helpers.py
 from models.collaborative_pianist import Collaborative_Pianist
+from models.student import Student
 
 def get_all_pianists_from_db():
     all_pianists = Collaborative_Pianist.get_all()
@@ -17,6 +18,12 @@ def retrieve_pianist_by_name(name):
 def delete_pianist(pianist_id):
     pianist_to_delete = retrieve_pianist_by_id(pianist_id)
     Collaborative_Pianist.delete_instance(pianist_to_delete)
+
+def get_all_students_from_db():
+    all_students = Student.get_all()
+    for student in all_students:
+        print(f"ID: {student.id} {student.name} // {student.instrument} // {student.pianist_id}")
+
 
 
 
