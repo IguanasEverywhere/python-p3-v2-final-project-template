@@ -1,4 +1,5 @@
 from helpers import get_all_students_from_db
+from menus.student_by_id_menu import student_by_id_menu
 
 def student_menu():
     active = True
@@ -12,5 +13,7 @@ def student_menu():
         choice = input(">> ")
         if choice == "1":
             get_all_students_from_db()
-        if choice == "0":
+        elif choice == "2":
+            student_by_id_menu()
+        elif choice == "0":
             active = False

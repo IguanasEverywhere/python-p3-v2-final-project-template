@@ -24,6 +24,10 @@ def get_all_students_from_db():
     for student in all_students:
         print(f"ID: {student.id} {student.name} // {student.instrument} // {student.pianist_id}")
 
+def retrieve_student_by_id(student_id):
+    found_student = Student.get_by_id(student_id)
+    return found_student
+
 
 
 

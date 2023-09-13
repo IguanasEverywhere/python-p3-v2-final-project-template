@@ -65,6 +65,18 @@ class Student:
             student.id = row[0]
             return student
 
+    @classmethod
+    def get_by_id(cls, id):
+        sql = """
+            SELECT *
+            FROM students
+            WHERE id = ?
+            """
+        found_student = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.make_instance_from_db(found_student)
+
+
+
     def save_to_db(self):
         sql = """
             INSERT INTO students (name, year, instrument, pianist_id)
