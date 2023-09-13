@@ -76,7 +76,6 @@ class Student:
         return cls.make_instance_from_db(found_student)
 
 
-
     def save_to_db(self):
         sql = """
             INSERT INTO students (name, year, instrument, pianist_id)
@@ -85,3 +84,12 @@ class Student:
         CURSOR.execute(sql, (self.name, self.year, self.instrument, self.pianist_id))
         CONN.commit()
         print(f"{self.name} saved to the database!")
+
+    def delete_instance(self):
+        sql = """
+            DELETE FROM students
+            WHERE id = ?
+            """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+        print(f"{self.name} deleted from database!")

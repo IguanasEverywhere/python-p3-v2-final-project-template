@@ -28,6 +28,10 @@ def retrieve_student_by_id(student_id):
     found_student = Student.get_by_id(student_id)
     return found_student
 
+def delete_student(student_id):
+    student_to_delete = retrieve_student_by_id(student_id)
+    Student.delete_instance(student_to_delete)
+
 
 
 

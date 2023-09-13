@@ -1,5 +1,6 @@
 from helpers import get_all_students_from_db
 from menus.student_by_id_menu import student_by_id_menu
+from menus.delete_student_menu import delete_student_menu
 
 def student_menu():
     active = True
@@ -15,5 +16,7 @@ def student_menu():
             get_all_students_from_db()
         elif choice == "2":
             student_by_id_menu()
+        elif choice == "4":
+            delete_student_menu()
         elif choice == "0":
             active = False
