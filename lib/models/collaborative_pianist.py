@@ -99,7 +99,8 @@ class Collaborative_Pianist:
             FROM collaborative_pianists
             WHERE ID = ?
             """
-        CURSOR.execute(sql, (self.id))
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
         print(f"{self.name} deleted from database!")
 
 

@@ -14,6 +14,10 @@ def retrieve_pianist_by_name(name):
     found_pianist = Collaborative_Pianist.get_by_name(name)
     return found_pianist
 
+def delete_pianist(pianist_id):
+    pianist_to_delete = retrieve_pianist_by_id(pianist_id)
+    Collaborative_Pianist.delete_instance(pianist_to_delete)
+
 
 
 
