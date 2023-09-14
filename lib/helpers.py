@@ -4,8 +4,9 @@ from models.student import Student
 
 def get_all_pianists_from_db():
     all_pianists = Collaborative_Pianist.get_all()
+    print("\n+++ ALL COLLABORATIVE PIANISTS: +++ \n")
     for pianist in all_pianists:
-        print(f"ID: {pianist.id} {pianist.name} // {pianist.rank} // {pianist.email}")
+        print(f"ID: {pianist.id} {pianist.name}")
 
 def retrieve_pianist_by_id(pianist_id):
     found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
@@ -27,12 +28,11 @@ def delete_pianist(pianist_id):
     Collaborative_Pianist.delete_instance(pianist_to_delete)
 
 def get_assigned_students(self):
-    print("=======================")
-    print(f"STUDENTS ASSIGNED TO {self.name}: ")
+    print(f"\n+++ STUDENTS ASSIGNED TO {self.name.upper()}: +++ \n")
     assigned_students = Collaborative_Pianist.get_assigned_students(self.id)
     for student in assigned_students:
         print(student)
-    print("=======================")
+    print('------------------------------')
 
 def get_all_students_from_db():
     all_students = Student.get_all()

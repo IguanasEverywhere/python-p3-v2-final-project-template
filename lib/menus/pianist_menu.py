@@ -6,7 +6,9 @@ from menus.delete_pianist_menu import delete_pianist_menu
 def pianist_menu():
     active = True
     while active:
+        print("\n===================================")
         print("\n*** COLLABORATIVE PIANIST MENU ***")
+        print("\n===================================")
         print("What would you like to do?")
         print("1. Show all Collaborative Pianists in the Database")
         print("2. Access Collaborative Pianist by ID")
