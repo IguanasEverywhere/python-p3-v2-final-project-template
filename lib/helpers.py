@@ -27,6 +27,13 @@ def delete_pianist(pianist_id):
     pianist_to_delete = retrieve_pianist_by_id(pianist_id)
     Collaborative_Pianist.delete_instance(pianist_to_delete)
 
+def add_new_pianist():
+    print("\n+++ ADD NEW PIANIST +++ \n")
+    name = input("Enter pianist's name: ")
+    rank = input("Enter pianist's rank (Faculty, TA, or Student): ")
+    email = input("Enter pianist's email: ")
+    Collaborative_Pianist.create(name, rank, email)
+
 def get_assigned_students(self):
     print(f"\n+++ STUDENTS ASSIGNED TO {self.name.upper()}: +++ \n")
     assigned_students = Collaborative_Pianist.get_assigned_students(self.id)
