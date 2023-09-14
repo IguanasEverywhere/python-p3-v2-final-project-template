@@ -19,6 +19,12 @@ def delete_pianist(pianist_id):
     pianist_to_delete = retrieve_pianist_by_id(pianist_id)
     Collaborative_Pianist.delete_instance(pianist_to_delete)
 
+def get_assigned_students(pianist_id):
+    print(f"FROM GET ASSIGNED STUDENTS HELPER: {pianist_id}")
+    assigned_students = Collaborative_Pianist.get_assigned_students(pianist_id)
+    for student in assigned_students:
+        print(student)
+
 def get_all_students_from_db():
     all_students = Student.get_all()
     for student in all_students:
