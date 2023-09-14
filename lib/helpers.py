@@ -43,8 +43,9 @@ def get_assigned_students(self):
 
 def get_all_students_from_db():
     all_students = Student.get_all()
+    print("\n+++ ALL STUDENTS: +++ \n")
     for student in all_students:
-        print(f"ID: {student.id} {student.name} // {student.instrument} // {student.pianist_id}")
+        print(f"ID: {student.id} {student.name}")
 
 def retrieve_student_by_id(student_id):
     found_student = Student.get_by_id(student_id)
@@ -53,6 +54,18 @@ def retrieve_student_by_id(student_id):
 def delete_student(student_id):
     student_to_delete = retrieve_student_by_id(student_id)
     Student.delete_instance(student_to_delete)
+
+def print_student_info(self):
+    print(f"=====STUDENT INFO:=====")
+    print(f"Name: {self.name}")
+    print(f"Rank: {self.instrument}")
+    print(f"Email: {self.year}")
+    print("=======================")
+
+def retrieve_assigned_pianist_for_student(self):
+    assigned_pianist = retrieve_pianist_by_id(self.pianist_id)
+    print(f"\n{self.name}'s assigned pianist:")
+    print_pianist_info(assigned_pianist)
 
 
 
