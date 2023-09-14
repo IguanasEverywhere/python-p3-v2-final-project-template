@@ -15,15 +15,24 @@ def retrieve_pianist_by_name(name):
     found_pianist = Collaborative_Pianist.get_by_name(name)
     return found_pianist
 
+def print_pianist_info(self):
+    print(f"=====PIANIST INFO:=====")
+    print(f"Name: {self.name}")
+    print(f"Rank: {self.rank}")
+    print(f"Email: {self.email}")
+    print("=======================")
+
 def delete_pianist(pianist_id):
     pianist_to_delete = retrieve_pianist_by_id(pianist_id)
     Collaborative_Pianist.delete_instance(pianist_to_delete)
 
-def get_assigned_students(pianist_id):
-    print(f"FROM GET ASSIGNED STUDENTS HELPER: {pianist_id}")
-    assigned_students = Collaborative_Pianist.get_assigned_students(pianist_id)
+def get_assigned_students(self):
+    print("=======================")
+    print(f"STUDENTS ASSIGNED TO {self.name}: ")
+    assigned_students = Collaborative_Pianist.get_assigned_students(self.id)
     for student in assigned_students:
         print(student)
+    print("=======================")
 
 def get_all_students_from_db():
     all_students = Student.get_all()

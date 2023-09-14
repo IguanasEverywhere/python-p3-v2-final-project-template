@@ -1,5 +1,5 @@
 from helpers import retrieve_pianist_by_id
-from helpers import get_assigned_students
+from helpers import get_assigned_students, print_pianist_info
 
 def pianist_by_id_menu():
     pianist_id = input("Enter the pianist's ID: ")
@@ -14,7 +14,9 @@ def pianist_by_id_menu():
         print("0. Go back to Collaborative Pianists menu")
 
         choice = input(">> ")
+        if choice == "1":
+            print_pianist_info(found_pianist)
         if choice == "2":
-            get_assigned_students(found_pianist.id)
+            get_assigned_students(found_pianist)
         elif choice == "0":
             active = False

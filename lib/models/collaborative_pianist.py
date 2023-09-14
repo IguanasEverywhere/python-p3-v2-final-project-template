@@ -102,8 +102,7 @@ class Collaborative_Pianist:
         CONN.commit()
         print(f"{self.name} deleted from database!")
 
-    @classmethod
-    def get_assigned_students(cls, id):
+    def get_assigned_students(id):
         from models.student import Student
         sql = """
             SELECT *
