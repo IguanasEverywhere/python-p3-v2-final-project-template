@@ -58,6 +58,14 @@ class Student:
     def make_instance_from_db(cls, row):
         student = cls.all_students.get(row[0])
         if student:
+            if not student.name == row[1]:
+                student.name = row[1]
+            if not student.year == row[2]:
+                student.year = row[2]
+            if not student.instrument == row[3]:
+                student.instrument = row[3]
+            if not student.pianist_id == row[4]:
+                student.pianist_id = row[4]
             return cls.all_students[row[0]]
         else:
             student = Student(row[1], row[2], row[3], row[4])
@@ -103,3 +111,14 @@ class Student:
         CURSOR.execute(sql, (pianist_id,))
         CONN.commit()
         print("Students updated!")
+
+    def update_student(self, name, year, instrument, pianist_id):
+        sql = """
+            UPDATE students
+            SET name = ?, year = ?, instrument = ?, pianist_id = ?
+            WHERE id = ?
+            """
+        CURSOR.execute(sql, (name, year, instrument, pianist_id, self.id))
+        CONN.commit()
+
+        print(f"{self.name} has been updated!")

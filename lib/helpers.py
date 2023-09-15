@@ -75,6 +75,13 @@ def retrieve_assigned_pianist_for_student(self):
     print(f"\n{self.name}'s assigned pianist:")
     print_pianist_info(assigned_pianist)
 
+def update_student_info(self):
+    print(f"\n+++ UPDATE {self.name} +++ \n")
+    name = input("Enter updated name: ")
+    year = input("Enter updated year: ")
+    instrument = input("Enter updated instrument: ")
+    self.update_student(name, year, instrument, self.pianist_id)
+
 
 
 

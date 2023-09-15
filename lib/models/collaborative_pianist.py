@@ -131,12 +131,6 @@ class Collaborative_Pianist:
         CURSOR.execute(sql, (name, rank, email, self.id))
         CONN.commit()
 
-        #is there a cleaner way to do this? updating local all
-        # Collaborative_Pianist.all_pianists[self.id].name = name
-        # Collaborative_Pianist.all_pianists[self.id].rank = rank
-        # Collaborative_Pianist.all_pianists[self.id].email = email
-
-
         print(f"{self.name} updated!")
 
 
