@@ -41,6 +41,14 @@ def get_assigned_students(self):
         print(student)
     print('------------------------------')
 
+def update_pianist_info(self):
+    print(f"\n+++ UPDATE {self.name} +++ \n")
+    name = input("Enter updated name: ")
+    rank = input("Enter updated rank: ")
+    email = input("Enter updated email: ")
+    self.update_pianist(name, rank, email)
+
+
 def get_all_students_from_db():
     all_students = Student.get_all()
     print("\n+++ ALL STUDENTS: +++ \n")

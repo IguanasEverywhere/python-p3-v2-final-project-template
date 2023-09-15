@@ -116,6 +116,23 @@ class Collaborative_Pianist:
         found_students = CURSOR.execute(sql, (id,)).fetchall()
         return [Student.make_instance_from_db(row) for row in found_students]
 
+    def update_pianist(self, name, rank, email):
+        sql = """
+            UPDATE collaborative_pianists
+            SET name = ?, rank = ?, email = ?
+            WHERE id = ?
+            """
+        CURSOR.execute(sql, (name, rank, email, self.id))
+        CONN.commit()
+
+        #is there a cleaner way to do this? updating local all
+        Collaborative_Pianist.all_pianists[self.id].name = name
+        Collaborative_Pianist.all_pianists[self.id].rank = rank
+        Collaborative_Pianist.all_pianists[self.id].email = email
+
+
+        print(f"{self.name} updated!")
+
 
 
 
