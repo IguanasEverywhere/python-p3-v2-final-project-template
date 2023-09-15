@@ -93,6 +93,7 @@ class Collaborative_Pianist:
         print(f"{self.name} saved to the database!")
 
     def delete_instance(self):
+        from models.student import Student
         sql = """
             DELETE
             FROM collaborative_pianists
@@ -101,6 +102,9 @@ class Collaborative_Pianist:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
         print(f"{self.name} deleted from database!")
+
+        Student.unassign_students(self.id)
+
 
     def get_assigned_students(id):
         from models.student import Student

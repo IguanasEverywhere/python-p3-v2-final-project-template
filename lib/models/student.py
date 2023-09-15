@@ -93,3 +93,13 @@ class Student:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
         print(f"{self.name} deleted from database!")
+
+    def unassign_students(pianist_id):
+        sql = """
+            UPDATE students
+            SET pianist_id = NULL
+            WHERE pianist_id = ?
+            """
+        CURSOR.execute(sql, (pianist_id,))
+        CONN.commit()
+        print("Students updated!")
