@@ -68,6 +68,12 @@ class Collaborative_Pianist:
     def make_instance_from_db_row(cls, row):
         pianist = cls.all_pianists.get(row[0])
         if pianist:
+            if not pianist.name == row[1]:
+                pianist.name = row[1]
+            if not pianist.rank == row[2]:
+                pianist.rank = row[2]
+            if not pianist.email == row[3]:
+                pianist.email = row[3]
             return cls.all_pianists[row[0]]
         else:
             pianist = Collaborative_Pianist(row[1], row[2], row[3])
@@ -126,9 +132,9 @@ class Collaborative_Pianist:
         CONN.commit()
 
         #is there a cleaner way to do this? updating local all
-        Collaborative_Pianist.all_pianists[self.id].name = name
-        Collaborative_Pianist.all_pianists[self.id].rank = rank
-        Collaborative_Pianist.all_pianists[self.id].email = email
+        # Collaborative_Pianist.all_pianists[self.id].name = name
+        # Collaborative_Pianist.all_pianists[self.id].rank = rank
+        # Collaborative_Pianist.all_pianists[self.id].email = email
 
 
         print(f"{self.name} updated!")
