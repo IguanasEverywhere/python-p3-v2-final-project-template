@@ -66,8 +66,8 @@ def delete_student(student_id):
 def print_student_info(self):
     print(f"=====STUDENT INFO:=====")
     print(f"Name: {self.name}")
-    print(f"Rank: {self.instrument}")
-    print(f"Email: {self.year}")
+    print(f"Instrument: {self.instrument}")
+    print(f"Year: {self.year}")
     print("=======================")
 
 def retrieve_assigned_pianist_for_student(self):
