@@ -19,6 +19,7 @@ def student_by_id_menu():
             print_student_info(found_student)
         elif choice == "2":
             retrieve_assigned_pianist_for_student(found_student)
+            active = False
         elif choice == "3":
             update_student_info(found_student)
             active = False

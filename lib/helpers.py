@@ -71,9 +71,19 @@ def print_student_info(self):
     print("=======================")
 
 def retrieve_assigned_pianist_for_student(self):
-    assigned_pianist = retrieve_pianist_by_id(self.pianist_id)
-    print(f"\n{self.name}'s assigned pianist:")
-    print_pianist_info(assigned_pianist)
+    if not self.pianist_id:
+        print("Pianist unassigned! Would you like to assign a pianist? Y/N: ")
+        choice = input(">> ")
+        if choice.upper() == 'Y':
+            get_all_pianists_from_db()
+            pianist_selection = input(f"Enter ID of pianist to assign to {self.name}: >>")
+            self.update_student(self.name, self.year, self.instrument, pianist_selection)
+
+
+    else:
+        assigned_pianist = retrieve_pianist_by_id(self.pianist_id)
+        print(f"\n{self.name}'s assigned pianist:")
+        print_pianist_info(assigned_pianist)
 
 def update_student_info(self):
     print(f"\n+++ UPDATE {self.name} +++ \n")
