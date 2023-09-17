@@ -1,5 +1,4 @@
-from helpers import retrieve_pianist_by_id
-from helpers import get_assigned_students, print_pianist_info, update_pianist_info
+from helpers import retrieve_pianist_by_id, get_assigned_students, print_pianist_info, update_pianist_info
 
 def pianist_by_id_menu():
     pianist_id = input("Enter the pianist's ID: ")

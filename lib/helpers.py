@@ -42,7 +42,14 @@ def update_pianist_info(self):
     name = input("Enter updated name: ")
     rank = input("Enter updated rank: ")
     email = input("Enter updated email: ")
-    self.update_pianist(name, rank, email)
+    try:
+        self.name = name
+        self.rank = rank
+        self.email = email
+        self.update_pianist(name, rank, email)
+    except Exception as msg:
+        print(f"\n\n!!! ERROR UPDATING {self.name} !!!")
+        print(msg)
 
 
 def get_all_students_from_db():
@@ -86,11 +93,16 @@ def update_student_info(self):
     name = input("Enter updated name: ")
     year = input("Enter updated year: ")
     instrument = input("Enter updated instrument: ")
-    self.update_student(name, year, instrument, self.pianist_id)
 
+    try:
+        self.name = name
+        self.year = year
+        self.instrument = instrument
 
-
-
+        self.update_student(name, year, instrument, self.pianist_id)
+    except Exception as msg:
+        print(f"\n\n!!! ERROR UPDATING {self.name} !!!")
+        print(msg)
 
 def exit_program():
     print("Goodbye!")

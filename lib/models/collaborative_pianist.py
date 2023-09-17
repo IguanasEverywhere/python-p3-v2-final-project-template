@@ -13,6 +13,21 @@ class Collaborative_Pianist:
     # def __repr__(self):
     #     return f"\n {self.name.upper()} // {self.rank} // {self.email}"
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if isinstance(name, str) and len(name):
+            self._name = name
+        else:
+            raise ValueError(
+                "Name value must not be empty!"
+            )
+
+
+
     @classmethod
     def create_table(cls):
         sql = """
@@ -58,12 +73,6 @@ class Collaborative_Pianist:
     def make_instance_from_db_row(cls, row):
         pianist = cls.all_pianists.get(row[0])
         if pianist:
-            if not pianist.name == row[1]:
-                pianist.name = row[1]
-            if not pianist.rank == row[2]:
-                pianist.rank = row[2]
-            if not pianist.email == row[3]:
-                pianist.email = row[3]
             return cls.all_pianists[row[0]]
         else:
             pianist = Collaborative_Pianist(row[1], row[2], row[3])
