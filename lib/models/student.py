@@ -1,5 +1,5 @@
 from models.__init__ import CONN, CURSOR
-from models.collaborative_pianist import Collaborative_Pianist
+
 
 class Student:
 
@@ -52,6 +52,21 @@ class Student:
                 "Instrument must be a non-empty string"
             )
 
+
+    @property
+    def pianist_id(self):
+        return self._pianist_id
+
+    @pianist_id.setter
+    def pianist_id(self, pianist_id):
+        from helpers import retrieve_pianist_by_id
+        found_pianist = retrieve_pianist_by_id(pianist_id)
+        if found_pianist:
+            self._pianist_id = pianist_id
+        else:
+            raise ValueError(
+                "No pianist by that ID found in database!"
+            )
 
 
     @classmethod

@@ -90,7 +90,13 @@ class Collaborative_Pianist:
             WHERE id = ?
             """
         found_pianist = CONN.execute(sql, (id,)).fetchone()
-        return cls.make_instance_from_db_row(found_pianist)
+        if found_pianist == None:
+            raise ValueError(
+                "No pianist found by that ID in the database!"
+            )
+        else:
+            return cls.make_instance_from_db_row(found_pianist)
+
 
 
     @classmethod

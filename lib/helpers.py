@@ -9,8 +9,11 @@ def get_all_pianists_from_db():
         print(f"ID: {pianist.id} {pianist.name}")
 
 def retrieve_pianist_by_id(pianist_id):
-    found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
-    return found_pianist
+    try:
+        found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
+        return found_pianist
+    except Exception as msg:
+        print(msg)
 
 def print_pianist_info(self):
     print(f"=====PIANIST INFO:=====")
@@ -94,7 +97,7 @@ def update_student_info(self):
     year = input("Enter updated year: ")
     instrument = input("Enter updated instrument: ")
     get_all_pianists_from_db()
-    pianist =  input("Select pianist to assign to this student: ")
+    pianist =  input("Enter pianist's id to assign to this student OR enter 0 for none: ")
 
 
     try:
