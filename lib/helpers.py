@@ -93,13 +93,17 @@ def update_student_info(self):
     name = input("Enter updated name: ")
     year = input("Enter updated year: ")
     instrument = input("Enter updated instrument: ")
+    get_all_pianists_from_db()
+    pianist =  input("Select pianist to assign to this student: ")
+
 
     try:
         self.name = name
         self.year = year
         self.instrument = instrument
+        self.pianist_id = pianist
 
-        self.update_student(name, year, instrument, self.pianist_id)
+        self.update_student(name, year, instrument, pianist)
     except Exception as msg:
         print(f"\n\n!!! ERROR UPDATING {self.name} !!!")
         print(msg)
