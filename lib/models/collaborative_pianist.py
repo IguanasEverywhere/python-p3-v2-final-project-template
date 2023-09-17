@@ -53,16 +53,6 @@ class Collaborative_Pianist:
         found_pianist = CONN.execute(sql, (id,)).fetchone()
         return cls.make_instance_from_db_row(found_pianist)
 
-    @classmethod
-    def get_by_name(cls, name):
-        sql = """
-            SELECT *
-            FROM collaborative_pianists
-            WHERE name = ?
-            """
-        found_pianist = CONN.execute(sql, (name,)).fetchone()
-        return cls.make_instance_from_db_row(found_pianist)
-
 
     @classmethod
     def make_instance_from_db_row(cls, row):

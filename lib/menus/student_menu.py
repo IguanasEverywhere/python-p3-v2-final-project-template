@@ -11,15 +11,14 @@ def student_menu():
         print("What would you like to do?")
         print("1. Show all Students in the Database")
         print("2. Access Student by ID")
-        print("3. Access Student by name")
-        print("4. Delete Student From Database")
+        print("3. Delete Student From Database")
         print("0. Go Back to Main Menu")
         choice = input(">> ")
         if choice == "1":
             get_all_students_from_db()
         elif choice == "2":
             student_by_id_menu()
-        elif choice == "4":
+        elif choice == "3":
             delete_student_menu()
         elif choice == "0":
             active = False
