@@ -23,9 +23,33 @@ class Collaborative_Pianist:
             self._name = name
         else:
             raise ValueError(
-                "Name value must not be empty!"
+                "Name value must letters and not be empty!"
+            )
+    @property
+    def rank(self):
+        return self._rank
+
+    @rank.setter
+    def rank(self, rank):
+        if rank == 'Faculty' or rank == 'TA' or rank == 'Student':
+            self._rank = rank
+        else:
+            raise ValueError(
+                "Pianist rank must be Faculty, TA, or Student"
             )
 
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        if '@' in email and '.' in email:
+            self._email = email
+        else:
+            raise ValueError(
+                "Email addresses must include both an @ and a . symbol"
+            )
 
 
     @classmethod

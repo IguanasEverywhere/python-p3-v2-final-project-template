@@ -15,6 +15,45 @@ class Student:
     # def __repr__(self):
     #     return f"{self.name}, {self.year}, {self.instrument}, {self.pianist_id}"
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if isinstance(name, str) and len(name):
+            self._name = name
+        else:
+            raise ValueError(
+                "Name must be a string of letters and not empty"
+            )
+
+    @property
+    def year(self):
+        return self._year
+
+    @year.setter
+    def year(self, year):
+        if year == "Freshman" or year == "Sophomore" or year == "Junior" or year == "Senior":
+            self._year = year
+        else:
+            raise ValueError("Year must be Freshman, Sophomore, Junior, or Senior")
+
+    @property
+    def instrument(self):
+        return self._instrument
+
+    @instrument.setter
+    def instrument(self, instrument):
+        if isinstance(instrument, str) and len(instrument):
+            self._instrument = instrument
+        else:
+            raise ValueError(
+                "Instrument must be a non-empty string"
+            )
+
+
+
     @classmethod
     def create_table(cls):
         sql = """
@@ -58,6 +97,7 @@ class Student:
     def make_instance_from_db(cls, row):
         student = cls.all_students.get(row[0])
         if student:
+            #fix this
             if not student.name == row[1]:
                 student.name = row[1]
             if not student.year == row[2]:
