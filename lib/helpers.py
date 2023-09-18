@@ -106,23 +106,27 @@ def retrieve_assigned_pianist_for_student(self):
 
 def update_student_info(self):
     print(f"\n+++ UPDATE {self.name} +++ \n")
-    name = input("Enter updated name: ")
-    year = input("Enter updated year: ")
-    instrument = input("Enter updated instrument: ")
-    get_all_pianists_from_db()
-    pianist =  input("Enter pianist's id to assign to this student: ")
-
 
     try:
+        name = input("Enter updated name: ")
         self.name = name
+        year = input("Enter updated year: ")
         self.year = year
+        instrument = input("Enter updated instrument: ")
         self.instrument = instrument
-        self.pianist_id = pianist
+        get_all_pianists_from_db()
+        pianist = input("Enter pianist's ID from above to assign to this student: ")
 
+        if retrieve_pianist_by_id(pianist) == None:
+            raise Exception("Cannot assign to non-existant pianist!")
         self.update_student(name, year, instrument, pianist)
+
     except Exception as msg:
         print(f"\n\n!!! ERROR UPDATING {self.name} !!!")
         print(msg)
+        fetched_student_from_db = Student.get_by_id(self.id)
+        update_student_info(fetched_student_from_db)
+
 
 def add_new_student():
     print("\n+++ ADD NEW STUDENT +++ \n")
