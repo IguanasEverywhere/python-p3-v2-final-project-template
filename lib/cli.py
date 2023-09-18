@@ -19,7 +19,7 @@ def main():
         elif choice == "2":
             student_menu()
         else:
-            print("Invalid choice")
+            print("Invalid choice, please try again!")
 
 
 if __name__ == "__main__":

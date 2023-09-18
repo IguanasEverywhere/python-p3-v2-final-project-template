@@ -3,7 +3,6 @@ from models.collaborative_pianist import Collaborative_Pianist
 from models.student import Student
 
 
-
 def get_all_pianists_from_db():
     all_pianists = Collaborative_Pianist.get_all()
     print("\n+++ ALL COLLABORATIVE PIANISTS: +++ \n")
@@ -11,7 +10,7 @@ def get_all_pianists_from_db():
         print(f"ID: {pianist.id} {pianist.name}")
 
 def retrieve_pianist_by_id(pianist_id):
-    ## this could be the multiple message problem
+    ## Check all?
     try:
         found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
         return found_pianist
@@ -46,17 +45,26 @@ def get_assigned_students(self):
 
 def update_pianist_info(self):
     print(f"\n+++ UPDATE {self.name} +++ \n")
-    name = input("Enter updated name: ")
-    rank = input("Enter updated rank: ")
-    email = input("Enter updated email: ")
+
     try:
+        name = input("Enter updated name: ")
         self.name = name
+        rank = input("Enter updated rank: ")
         self.rank = rank
+        email = input("Enter updated email: ")
         self.email = email
         self.update_pianist(name, rank, email)
+
     except Exception as msg:
         print(f"\n\n!!! ERROR UPDATING {self.name} !!!")
         print(msg)
+        fetched_pianist_from_db = Collaborative_Pianist.get_by_id(self.id)
+        update_pianist_info(fetched_pianist_from_db)
+
+
+
+
+
 
 
 def get_all_students_from_db():

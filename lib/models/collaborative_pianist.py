@@ -103,6 +103,12 @@ class Collaborative_Pianist:
     def make_instance_from_db_row(cls, row):
         pianist = cls.all_pianists.get(row[0])
         if pianist:
+            if not pianist.name == row[1]:
+                pianist.name = row[1]
+            if not pianist.rank == row[2]:
+                pianist.rank = row[2]
+            if not pianist.email == row[3]:
+                pianist.email = row[3]
             return cls.all_pianists[row[0]]
         else:
             pianist = Collaborative_Pianist(row[1], row[2], row[3])
@@ -152,15 +158,16 @@ class Collaborative_Pianist:
         return [Student.make_instance_from_db(row) for row in found_students]
 
     def update_pianist(self, name, rank, email):
-        sql = """
-            UPDATE collaborative_pianists
-            SET name = ?, rank = ?, email = ?
-            WHERE id = ?
-            """
-        CURSOR.execute(sql, (name, rank, email, self.id))
-        CONN.commit()
+            sql = """
+                UPDATE collaborative_pianists
+                SET name = ?, rank = ?, email = ?
+                WHERE id = ?
+                """
+            CURSOR.execute(sql, (name, rank, email, self.id))
+            CONN.commit()
 
-        print(f"\n** {self.name} updated! **")
+            print(f"\n** {self.name} updated! **")
+
 
 
 

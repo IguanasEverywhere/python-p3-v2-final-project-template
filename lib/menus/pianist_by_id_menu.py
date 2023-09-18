@@ -30,4 +30,6 @@ def pianist_by_id_menu():
             active = False
         elif choice == "0":
             active = False
+        else:
+            print("Invalid choice, please try again!")
 

@@ -21,3 +21,5 @@ def pianist_menu():
             add_new_pianist()
         elif choice == "0":
             active = False
+        else:
+            print("Invalid choice, please try again!")
