@@ -160,7 +160,7 @@ class Student:
     def unassign_students(pianist_id):
         sql = """
             UPDATE students
-            SET pianist_id = NULL
+            SET pianist_id = 1
             WHERE pianist_id = ?
             """
         CURSOR.execute(sql, (pianist_id,))
