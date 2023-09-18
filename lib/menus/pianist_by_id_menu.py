@@ -5,6 +5,10 @@ def pianist_by_id_menu():
     active = True
     pianist_id = input("Enter the pianist's ID: ")
 
+    if pianist_id == "1":
+        print("\nYou cannot alter this entry; it is used for unassigned students.")
+        active = False
+
     found_pianist = retrieve_pianist_by_id(pianist_id)
     if found_pianist == None:
         active = False
