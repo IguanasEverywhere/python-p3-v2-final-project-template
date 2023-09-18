@@ -136,7 +136,7 @@ class Collaborative_Pianist:
             """
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
-        print(f"{self.name} deleted from database!")
+        print(f"\n ** {self.name} deleted from database! **")
 
         Student.unassign_students(self.id)
 
@@ -160,7 +160,7 @@ class Collaborative_Pianist:
         CURSOR.execute(sql, (name, rank, email, self.id))
         CONN.commit()
 
-        print(f"{self.name} updated!")
+        print(f"\n** {self.name} updated! **")
 
 
 

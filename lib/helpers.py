@@ -2,6 +2,8 @@
 from models.collaborative_pianist import Collaborative_Pianist
 from models.student import Student
 
+
+
 def get_all_pianists_from_db():
     all_pianists = Collaborative_Pianist.get_all()
     print("\n+++ ALL COLLABORATIVE PIANISTS: +++ \n")
@@ -23,7 +25,10 @@ def print_pianist_info(self):
 
 def delete_pianist(pianist_id):
     pianist_to_delete = retrieve_pianist_by_id(pianist_id)
-    Collaborative_Pianist.delete_instance(pianist_to_delete)
+    if pianist_to_delete == None:
+        print("No pianist by that ID in the database!")
+    else:
+        Collaborative_Pianist.delete_instance(pianist_to_delete)
 
 def add_new_pianist():
     print("\n+++ ADD NEW PIANIST +++ \n")

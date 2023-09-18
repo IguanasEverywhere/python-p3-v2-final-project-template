@@ -165,7 +165,7 @@ class Student:
             """
         CURSOR.execute(sql, (pianist_id,))
         CONN.commit()
-        print("Students updated!")
+        print("\n ** Students table updated! **")
 
     def update_student(self, name, year, instrument, pianist_id):
         sql = """
