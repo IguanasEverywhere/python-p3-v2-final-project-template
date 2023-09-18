@@ -1,6 +1,5 @@
 from helpers import get_all_students_from_db, add_new_student, unassigned_students
 from menus.student_by_id_menu import student_by_id_menu
-from menus.delete_student_menu import delete_student_menu
 
 def student_menu():
     active = True
@@ -11,9 +10,8 @@ def student_menu():
         print("What would you like to do?")
         print("1. Show all Students in the Database")
         print("2. Access Student by ID")
-        print("3. Delete Student From Database")
-        print("4. Add a new student to the database")
-        print("5. Show all students without an assigned pianist")
+        print("3. Add a new student to the database")
+        print("4. Show all students without an assigned pianist")
         print("0. Go Back to Main Menu")
         choice = input(">> ")
         if choice == "1":
@@ -21,10 +19,8 @@ def student_menu():
         elif choice == "2":
             student_by_id_menu()
         elif choice == "3":
-            delete_student_menu()
-        elif choice == "4":
             add_new_student()
-        elif choice == "5":
+        elif choice == "4":
             unassigned_students()
         elif choice == "0":
             active = False

@@ -25,7 +25,6 @@ def pianist_by_id_menu():
             get_assigned_students(found_pianist)
         elif choice == "3":
             update_pianist_info(found_pianist)
-            active = False
         elif choice == "4":
             delete_pianist(found_pianist.id)
             active = False
