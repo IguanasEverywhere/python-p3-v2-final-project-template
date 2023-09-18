@@ -9,6 +9,7 @@ def get_all_pianists_from_db():
         print(f"ID: {pianist.id} {pianist.name}")
 
 def retrieve_pianist_by_id(pianist_id):
+    ## this could be the multiple message problem
     try:
         found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
         return found_pianist
@@ -110,6 +111,16 @@ def update_student_info(self):
     except Exception as msg:
         print(f"\n\n!!! ERROR UPDATING {self.name} !!!")
         print(msg)
+
+def add_new_student():
+    print("\n+++ ADD NEW STUDENT +++ \n")
+    name = input("Enter student's name: ")
+    year = input("Enter pianist's year (Freshman, Sophomore, Junior, Senior): ")
+    instrument = input("Enter pianist's instrument: ")
+    get_all_pianists_from_db()
+    pianist_id =  input("Enter pianist's id to assign to this student OR enter 0 for none: ")
+
+    Student.create(name, year, instrument, pianist_id)
 
 def exit_program():
     print("Goodbye!")

@@ -1,4 +1,4 @@
-from helpers import get_all_students_from_db
+from helpers import get_all_students_from_db, add_new_student
 from menus.student_by_id_menu import student_by_id_menu
 from menus.delete_student_menu import delete_student_menu
 
@@ -12,6 +12,7 @@ def student_menu():
         print("1. Show all Students in the Database")
         print("2. Access Student by ID")
         print("3. Delete Student From Database")
+        print("4. Add a new student to the database")
         print("0. Go Back to Main Menu")
         choice = input(">> ")
         if choice == "1":
@@ -20,5 +21,7 @@ def student_menu():
             student_by_id_menu()
         elif choice == "3":
             delete_student_menu()
+        elif choice == "4":
+            add_new_student()
         elif choice == "0":
             active = False
