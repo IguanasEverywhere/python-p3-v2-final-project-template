@@ -34,7 +34,12 @@ def add_new_pianist():
     name = input("Enter pianist's name: ")
     rank = input("Enter pianist's rank (Faculty, TA, or Student): ")
     email = input("Enter pianist's email: ")
-    Collaborative_Pianist.create(name, rank, email)
+    try:
+        Collaborative_Pianist.create(name, rank, email)
+    except Exception as msg:
+        print(f"\n** {msg} **")
+        print("Please try again!")
+        add_new_pianist()
 
 def get_assigned_students(self):
     print(f"\n+++ STUDENTS ASSIGNED TO {self.name.upper()}: +++ \n")
@@ -60,11 +65,6 @@ def update_pianist_info(self):
         print(msg)
         fetched_pianist_from_db = Collaborative_Pianist.get_by_id(self.id)
         update_pianist_info(fetched_pianist_from_db)
-
-
-
-
-
 
 
 def get_all_students_from_db():

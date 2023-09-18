@@ -131,7 +131,7 @@ class Collaborative_Pianist:
         CURSOR.execute(sql, (self.name, self.rank, self.email))
         CONN.commit()
 
-        print(f"{self.name} saved to the database!")
+        print(f"\n{self.name} saved to the database!")
 
     def delete_instance(self):
         from models.student import Student
