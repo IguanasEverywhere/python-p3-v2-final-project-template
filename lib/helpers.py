@@ -17,10 +17,8 @@ def retrieve_pianist_by_id(pianist_id):
         print(msg)
 
 def print_pianist_info(self):
-    print(f"=====PIANIST INFO:=====")
-    print(f"Name: {self.name}")
-    print(f"Rank: {self.rank}")
-    print(f"Email: {self.email}")
+    print(f"\n=====PIANIST INFO:=====")
+    print(f"ID: {self.id} Name: {self.name} // Rank: {self.rank} // Email: {self.email}")
     print("=======================")
 
 def delete_pianist(pianist_id):
@@ -38,7 +36,7 @@ def get_assigned_students(self):
     print(f"\n+++ STUDENTS ASSIGNED TO {self.name.upper()}: +++ \n")
     assigned_students = Collaborative_Pianist.get_assigned_students(self.id)
     for student in assigned_students:
-        print(student)
+        print_student_info(student)
     print('------------------------------')
 
 def update_pianist_info(self):
@@ -71,10 +69,8 @@ def delete_student(student_id):
     Student.delete_instance(student_to_delete)
 
 def print_student_info(self):
-    print(f"=====STUDENT INFO:=====")
-    print(f"Name: {self.name}")
-    print(f"Instrument: {self.instrument}")
-    print(f"Year: {self.year}")
+    print(f"\n=====STUDENT INFO:=====")
+    print(f"ID: {self.id} Name: {self.name} // Year: {self.year} // Instrument: {self.instrument}")
     print("=======================")
 
 def retrieve_assigned_pianist_for_student(self):
@@ -98,7 +94,7 @@ def update_student_info(self):
     year = input("Enter updated year: ")
     instrument = input("Enter updated instrument: ")
     get_all_pianists_from_db()
-    pianist =  input("Enter pianist's id to assign to this student OR enter 0 for none: ")
+    pianist =  input("Enter pianist's id to assign to this student: ")
 
 
     try:
@@ -118,9 +114,16 @@ def add_new_student():
     year = input("Enter pianist's year (Freshman, Sophomore, Junior, Senior): ")
     instrument = input("Enter pianist's instrument: ")
     get_all_pianists_from_db()
-    pianist_id =  input("Enter pianist's id to assign to this student OR enter 0 for none: ")
+    pianist_id =  input("Enter pianist's id to assign to this student (1 for unassigned): ")
 
     Student.create(name, year, instrument, pianist_id)
+
+def unassigned_students():
+    print("\n+++ UNASSIGNED STUDENTS +++ \n")
+    unassigned_students = Student.get_unassigned_students()
+    for student in unassigned_students:
+        print_student_info(student)
+
 
 def exit_program():
     print("Goodbye!")

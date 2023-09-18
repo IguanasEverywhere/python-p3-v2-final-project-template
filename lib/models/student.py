@@ -177,3 +177,15 @@ class Student:
         CONN.commit()
 
         print(f"{self.name} has been updated!")
+
+    @classmethod
+    def get_unassigned_students(cls):
+        sql = """
+              SELECt *
+              FROM students
+              WHERE id = 1
+              """
+        unassigned_students = CURSOR.execute(sql).fetchall()
+        CONN.commit()
+
+        return [cls.make_instance_from_db(row) for row in unassigned_students]
