@@ -136,7 +136,12 @@ def add_new_student():
     get_all_pianists_from_db()
     pianist_id =  input("Enter pianist's id to assign to this student (1 for unassigned): ")
 
-    Student.create(name, year, instrument, pianist_id)
+    try:
+        Student.create(name, year, instrument, pianist_id)
+    except Exception as msg:
+        print(f"\n ** {msg} **")
+        print("Please try again!")
+        add_new_student()
 
 def unassigned_students():
     print("\n+++ UNASSIGNED STUDENTS +++ \n")
