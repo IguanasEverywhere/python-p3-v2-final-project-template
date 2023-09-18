@@ -136,7 +136,12 @@ class Student:
             WHERE id = ?
             """
         found_student = CURSOR.execute(sql, (id,)).fetchone()
-        return cls.make_instance_from_db(found_student)
+        if found_student == None:
+            raise ValueError(
+                "No student found by that ID in the database!"
+            )
+        else:
+            return cls.make_instance_from_db(found_student)
 
 
     def save_to_db(self):

@@ -24,3 +24,5 @@ def student_menu():
             unassigned_students()
         elif choice == "0":
             active = False
+        else:
+            print("\nInvald choice, please try again!")

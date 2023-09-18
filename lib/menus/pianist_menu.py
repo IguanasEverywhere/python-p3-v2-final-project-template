@@ -22,4 +22,4 @@ def pianist_menu():
         elif choice == "0":
             active = False
         else:
-            print("Invalid choice, please try again!")
+            print("\nInvalid choice, please try again!")

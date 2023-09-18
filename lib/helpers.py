@@ -74,8 +74,11 @@ def get_all_students_from_db():
         print(f"ID: {student.id} {student.name}")
 
 def retrieve_student_by_id(student_id):
-    found_student = Student.get_by_id(student_id)
-    return found_student
+    try:
+        found_student = Student.get_by_id(student_id)
+        return found_student
+    except Exception as msg:
+        print(msg)
 
 def delete_student(student_id):
     student_to_delete = retrieve_student_by_id(student_id)
