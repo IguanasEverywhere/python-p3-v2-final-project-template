@@ -5,7 +5,7 @@ class Student:
 
     all_students = {}
 
-    def __init__(self, name, year, instrument, pianist_id=None, id=None):
+    def __init__(self, name, year, instrument, pianist_id=1, id=None):
         self.id = id
         self.name = name
         self.year = year
@@ -94,7 +94,7 @@ class Student:
         CONN.commit()
 
     @classmethod
-    def create(cls, name, year, instrument, pianist_id=None):
+    def create(cls, name, year, instrument, pianist_id=1):
         new_student = cls(name, year, instrument, pianist_id)
         new_student.save_to_db()
         return new_student
@@ -112,7 +112,6 @@ class Student:
     def make_instance_from_db(cls, row):
         student = cls.all_students.get(row[0])
         if student:
-            #fix this
             if not student.name == row[1]:
                 student.name = row[1]
             if not student.year == row[2]:

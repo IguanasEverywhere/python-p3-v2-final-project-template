@@ -75,72 +75,54 @@ This program prints a farewell message and exits the CLI.
 
 ### Models
 
+The included models provide classes, along with class methods and instance methods, for the two tables and object types used in the application: Collaborative Pianists and Students. Many of the methods between these two models work similarly, with small differences in received parameters and specific assignments. A rough overview of how these methods work is below.
 
+#### \_\_init__
+As expected, the init methods receive parameters to set the appropriate attributes for newly created objects. It is worth noting the `@property` methods that follow, as they will be called to actually set and retrieve the values.
 
+#### @property getters and setters
+These methods are called whenever attributes are retrieved or set for instances of the class. As is often the case for property methods, the setters perform validation checks of the data before setting the attributes on the object, raising exceptions in case the check fails.
 
+#### create_table/drop_table
+These two class methods are called by the debug file, ensuring that `Collaborative_Pianist` and `Student` tables are cleared from the database and then re-recreated and inserted into the database, which is useful for debugging and starting from a clean slate. The `IF NOT EXISTS` designation prevents duplicate tables from being created.
 
-## Headers
+#### get_all
+These methods execute a SQL query of the database, retrieving all of the rows for their particular table. Once fetched, each of the rows is then passed through `make_instance_from_db`.
 
-# This is a Heading h1
-## This is a Heading h2
-###### This is a Heading h6
+#### get_by_id
+These class methods query the database table for a row whose ID matches in the id received as a parameter. If no match is found in the database, an exception is raised. If a match is found, the row is then passed into `make_instance_from_db`.
 
-## Emphasis
+#### make_instance_from_db_row
+These methods receive a row that has been retrieved from the database. First, they check if a local object has already been retrieved (and thus exists in the class's `all` dictionary); if it does, checks are done to ensure that the local object's attributes match the columns of the database row (in case a local object was partially updated before an exception was raised or something else prevented persistence to the database). If the `all` dictionary does not contain a key matching the row's id, then we know the row has not been previously retrieved. In this case, a new object is instantiated and saved to the local dictionary. This process prevents duplicate objects from being created on the front end.
 
-*This text will be italic*
-_This will also be italic_
+#### create
+`create` receives values for attributes, and then attempts to instantiate a new object with those attributes. The newly created object then has its `save_to_db` method called.
 
-**This text will be bold**
-__This will also be bold__
+#### save_to_db
+`save_to_db` receives an object, then executes a SQL query to persist the object's attributes to the database table as a new row.
 
-_You **can** combine them_
+#### delete_instance
+This method receives an object, then executes a SQL query that deletes the row corresponding to that object's ID from the database. Importantly, the `Collaborative_Pianist` version of this method also calls `Student`'s `unassign_students` method with the ID, which ensures that the Students who had been previously assigned to that pianist will now automatically be re-assigned to the `No Pianist` row.
 
-## Lists
+#### get_assigned_students
+This `Collaborative_Pianist` method performs a SQL query to fetch all of the students from the database whose `pianist_id` column matches the id of the pianist passsed in. Each resulting row is passed through `make_instance_from_db`; the resulting objects are accumulated into a list and returned.
 
-### Unordered
+#### update_pianist / update_student
+These methods execute a SQL query to find a row in the database whose ID matches the passed-in object's ID, then updates the other columns to the values passed into the method.
 
-* Item 1
-* Item 2
-* Item 2a
-* Item 2b
+#### unassign_students
+This method updates student's `pianist_id` column in the database to be `No Pianist` if their `pianist_id` column matches the id passed in. This is used to change a student's pianist assignment to `No Pianist`, rather than leaving them assigned to a pianist who no longer exists in the database.
 
-### Ordered
+#### get_unassigned_students
+This method retrieves all students from the database who are assigned to `No Pianist`, which is useful for a user to see in case they would like to know which students to prioritize assigning in their work.
 
-1. Item 1
-1. Item 2
-1. Item 3
-  1. Item 3a
-  1. Item 3b
+### Ideas for Future Development
+* More flexible user inputs, i.e. by standardizing capitalization of entered data
+* Adding some many-to-many relationships, perhaps by allowing students to have multiple pianist assignments for different projects. This would necessitate a new table to hold the relationships.
+* Adding other tables for things like repertoire or events, and associating those things with both pianists and students
 
-## Images
+*****
 
-![This is an alt text.](/image/sample.png "This is a sample image.")
+Project created by Scott Schwab, 2023
 
-## Links
-
-You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
-
-## Blockquotes
-
-> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
->
->> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
-
-## Tables
-
-| Left columns  | Right columns |
-| ------------- |:-------------:|
-| left foo      | right foo     |
-| left bar      | right bar     |
-| left baz      | right baz     |
-
-## Blocks of code
-
-```
-let message = 'Hello world';
-alert(message);
-```
-
-## Inline code
-
-This web site is using `markedjs/marked`.
+Thanks to http://markdownlivepreview.com for markdown templating assistance in the creation of this README
