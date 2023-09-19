@@ -82,7 +82,10 @@ def retrieve_student_by_id(student_id):
 
 def delete_student(student_id):
     student_to_delete = retrieve_student_by_id(student_id)
-    Student.delete_instance(student_to_delete)
+    if student_to_delete == None:
+        print("No student by that ID in the database!")
+    else:
+        Student.delete_instance(student_to_delete)
 
 def print_student_info(self):
     print(f"\n=====STUDENT INFO:=====")
@@ -90,6 +93,7 @@ def print_student_info(self):
     print("=======================")
 
 def retrieve_assigned_pianist_for_student(self):
+    ## do we need this if anymore?
     if not self.pianist_id:
         print("Pianist unassigned! Would you like to assign a pianist? Y/N: ")
         choice = input(">> ")
@@ -151,5 +155,5 @@ def unassigned_students():
 
 
 def exit_program():
-    print("Goodbye!")
+    print("Thank you for using the Collaborative Pianist CLI!")
     exit()

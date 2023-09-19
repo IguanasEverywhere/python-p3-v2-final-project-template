@@ -151,7 +151,7 @@ class Student:
             """
         CURSOR.execute(sql, (self.name, self.year, self.instrument, self.pianist_id))
         CONN.commit()
-        print(f"{self.name} saved to the database!")
+        print(f"\n** {self.name} saved to the database! **\n")
 
     def delete_instance(self):
         sql = """
