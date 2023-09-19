@@ -185,9 +185,9 @@ class Student:
     @classmethod
     def get_unassigned_students(cls):
         sql = """
-              SELECt *
+              SELECT *
               FROM students
-              WHERE id = 1
+              WHERE pianist_id = 1
               """
         unassigned_students = CURSOR.execute(sql).fetchall()
         CONN.commit()

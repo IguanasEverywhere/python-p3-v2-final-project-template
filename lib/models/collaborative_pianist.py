@@ -23,7 +23,7 @@ class Collaborative_Pianist:
             self._name = name
         else:
             raise ValueError(
-                "Name value must letters and not be empty!"
+                "Name value must be letters and not be empty!"
             )
     @property
     def rank(self):
