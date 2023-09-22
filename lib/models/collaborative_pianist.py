@@ -10,8 +10,8 @@ class Collaborative_Pianist:
         self.rank = rank
         self.email = email
 
-    # def __repr__(self):
-    #     return f"\n {self.name.upper()} // {self.rank} // {self.email}"
+    def __repr__(self):
+        return f"\n {self.name.upper()} // {self.rank} // {self.email}"
 
     @property
     def name(self):
@@ -131,7 +131,7 @@ class Collaborative_Pianist:
         CURSOR.execute(sql, (self.name, self.rank, self.email))
         CONN.commit()
 
-        print(f"\n{self.name} saved to the database!")
+        print(f"\n ** {self.name} saved to the database! **")
 
     def delete_instance(self):
         from models.student import Student

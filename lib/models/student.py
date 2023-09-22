@@ -12,8 +12,8 @@ class Student:
         self.instrument = instrument
         self.pianist_id = pianist_id
 
-    # def __repr__(self):
-    #     return f"{self.name}, {self.year}, {self.instrument}, {self.pianist_id}"
+    def __repr__(self):
+        return f"{self.name}, {self.year}, {self.instrument}, {self.pianist_id}"
 
     @property
     def name(self):

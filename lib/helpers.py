@@ -10,7 +10,7 @@ def get_all_pianists_from_db():
         print(f"ID: {pianist.id} {pianist.name}")
 
 def retrieve_pianist_by_id(pianist_id):
-    ## Check all?
+    # This is why the pianist "all" gets populated immediately
     try:
         found_pianist = Collaborative_Pianist.get_by_id(pianist_id)
         return found_pianist

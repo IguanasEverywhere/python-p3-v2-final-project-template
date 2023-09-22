@@ -12,6 +12,6 @@ def seed_table():
     Student.create("Bob", "Freshman", "Flute", 3)
     Student.create("Michael", "Senior", "Trumpet", 3)
     Student.create("Karen", "Freshman", "Trombone", 3)
-    Student.create("Adam", "Junior", "Viola", 1)
+    Student.create("Adam", "Junior", "Viola", 4)
 
 
