@@ -159,7 +159,7 @@ class Student:
             """
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
-        print(f"{self.name} deleted from database!")
+        print(f"\n** {self.name} deleted from database! **")
 
     def unassign_students(pianist_id):
         sql = """
